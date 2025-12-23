@@ -8,6 +8,7 @@
 #include "LLM/N2CSystemPromptManager.h"
 #include "LLM/N2CBaseLLMService.h"
 #include "LLM/N2CLLMProviderRegistry.h"
+#include "LLM/IN2CLLMService.h"
 #include "LLM/Providers/N2CAnthropicService.h"
 #include "LLM/Providers/N2CDeepSeekService.h"
 #include "LLM/Providers/N2CGeminiService.h"
@@ -471,7 +472,13 @@ bool UN2CLLMModule::CreateServiceForProvider(EN2CLLMProvider Provider)
     }
 
     // Initialize service
-    if (!ServiceInterface.GetInterface()->Initialize(Config))
+    // UE4的TScriptInterface::GetInterface()返回void*，需要显式转换
+    // UE5的TScriptInterface重载了->操作符，可以直接调用
+#if ENGINE_MAJOR_VERSION >= 5
+    if (!ServiceInterface->Initialize(Config))
+#else
+    if (!static_cast<IN2CLLMService*>(ServiceInterface.GetInterface())->Initialize(Config))
+#endif
     {
         FN2CLogger::Get().LogError(TEXT("Failed to initialize service"), TEXT("LLMModule"));
         return false;

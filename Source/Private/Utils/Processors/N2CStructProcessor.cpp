@@ -13,7 +13,12 @@ void FN2CStructProcessor::ExtractNodeProperties(UK2Node* Node, FN2CNodeDefinitio
             OutNodeDef.MemberName = GetCleanClassName(Struct->GetName());
 
             // Get the path name and extract just the base name before the period
+            // UE5使用GetStructPathName()，UE4使用GetPathName()
+#if ENGINE_MAJOR_VERSION >= 5
             const FString FullPath = Struct->GetStructPathName().ToString();
+#else
+            const FString FullPath = Struct->GetPathName();
+#endif
             int32 DotIndex;                                                                                                                                                                                                                
             if (FullPath.FindChar('.', DotIndex))                                                                                                                                                                                          
             {                                                                                                                                                                                                                              
@@ -42,7 +47,12 @@ void FN2CStructProcessor::ExtractNodeProperties(UK2Node* Node, FN2CNodeDefinitio
             OutNodeDef.MemberName = GetCleanClassName(Struct->GetName());
 
             // Get the path name and extract just the base name before the period
+            // UE5使用GetStructPathName()，UE4使用GetPathName()
+#if ENGINE_MAJOR_VERSION >= 5
             const FString FullPath = Struct->GetStructPathName().ToString();
+#else
+            const FString FullPath = Struct->GetPathName();
+#endif
             int32 DotIndex;
             if (FullPath.FindChar('.', DotIndex))
             {
@@ -87,7 +97,12 @@ void FN2CStructProcessor::ExtractNodeProperties(UK2Node* Node, FN2CNodeDefinitio
             OutNodeDef.MemberName = GetCleanClassName(Struct->GetName());
 
             // Get the path name and extract just the base name before the period
+            // UE5使用GetStructPathName()，UE4使用GetPathName()
+#if ENGINE_MAJOR_VERSION >= 5
             const FString FullPath = Struct->GetStructPathName().ToString();
+#else
+            const FString FullPath = Struct->GetPathName();
+#endif
             int32 DotIndex;
             if (FullPath.FindChar('.', DotIndex))
             {

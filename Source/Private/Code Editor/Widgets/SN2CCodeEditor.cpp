@@ -1,6 +1,8 @@
 // Copyright (c) 2025 Nick McClure (Protospatial). All Rights Reserved.
 
 #include "Code Editor/Widgets/SN2CCodeEditor.h"
+
+#include "Widgets/Layout/SGridPanel.h"
 #include "Widgets/Text/SMultiLineEditableText.h"
 #include "Code Editor/Syntax/N2CRichTextSyntaxHighlighter.h"
 #include "Code Editor/Models/N2CCodeEditorStyle.h"

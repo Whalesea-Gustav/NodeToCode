@@ -2,7 +2,10 @@
 
 #include "Core/N2CToolbarCommand.h"
 
+#if ENGINE_MAJOR_VERSION >= 5
 #include "Styling/AppStyle.h"
+#endif
+
 #include "Framework/Commands/UICommandList.h"
 #include "Utils/N2CLogger.h"
 
@@ -23,7 +26,11 @@ FN2CToolbarCommand::FN2CToolbarCommand()
         TEXT("NodeToCode"), // Context name for fast lookup
         NSLOCTEXT("NodeToCode", "NodeToCode", "Node to Code"), // Localized context name
         NAME_None, // Parent
+#if ENGINE_MAJOR_VERSION >= 5
         FAppStyle::GetAppStyleSetName() // Icon style
+#else
+        FName("N2CToolbar")
+#endif
     )
 {
 }

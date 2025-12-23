@@ -5,7 +5,7 @@
 #include "N2CSyntaxDefinition.h"
 #include "Framework/Text/SyntaxHighlighterTextLayoutMarshaller.h"
 #include "Code Editor/Models/N2CCodeEditorStyle.h"
-
+#include "Framework/Text/SyntaxTokenizer.h"
 
 class FTextLayout;
 

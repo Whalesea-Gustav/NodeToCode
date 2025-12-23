@@ -5,6 +5,7 @@
 #include <Core/N2CWidgetContainer.h>
 
 #include "HttpModule.h"
+#include "ToolMenus.h"
 #include "Models/N2CLogging.h"
 #include "Core/N2CEditorIntegration.h"
 #include "Core/N2CSettings.h"
@@ -149,7 +150,11 @@ void FNodeToCodeModule::ConfigureHttpTimeouts()
     TimeoutConfig->HttpActivityTimeout = 3600.0f;
     
     // Save the config, which writes to the specified ini file
+#if ENGINE_MAJOR_VERSION >= 5
     TimeoutConfig->TryUpdateDefaultConfigFile(*DefaultEngineIniPath);
+#else
+    TimeoutConfig->UpdateDefaultConfigFile(*DefaultEngineIniPath);
+#endif
     
     FN2CLogger::Get().Log(
         TEXT("Added HTTP timeout settings to DefaultEngine.ini to support long-running Ollama requests"), 

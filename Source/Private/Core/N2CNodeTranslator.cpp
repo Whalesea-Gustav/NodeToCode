@@ -422,10 +422,12 @@ EN2CPinType FN2CNodeTranslator::DeterminePinType(const UEdGraphPin* Pin) const
         return EN2CPinType::Integer64;
     if (PinCategory == UEdGraphSchema_K2::PC_Float)
         return EN2CPinType::Float;
+#if ENGINE_MAJOR_VERSION >= 5
     if (PinCategory == UEdGraphSchema_K2::PC_Double)
         return EN2CPinType::Double;
     if (PinCategory == UEdGraphSchema_K2::PC_Real)
         return EN2CPinType::Real;
+#endif
     if (PinCategory == UEdGraphSchema_K2::PC_String)
         return EN2CPinType::String;
     if (PinCategory == UEdGraphSchema_K2::PC_Name)
