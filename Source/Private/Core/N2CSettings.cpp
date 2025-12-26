@@ -167,14 +167,12 @@ void UN2CSettings::InitializePricing()
     AnthropicModelPricing.Add(EN2CAnthropicModel::Claude3_5_Sonnet, FN2CAnthropicPricing(3.0f, 15.0f));
     AnthropicModelPricing.Add(EN2CAnthropicModel::Claude3_5_Haiku, FN2CAnthropicPricing(0.8f, 4.0f));
 
-    GeminiModelPricing.Add(EN2CGeminiModel::Gemini_2_5_Pro, FN2CGeminiPricing(1.25f, 10.0f));
+    GeminiModelPricing.Add(EN2CGeminiModel::Gemini_3_Pro_Preview, FN2CGeminiPricing(2.0f, 12.0f));
+    GeminiModelPricing.Add(EN2CGeminiModel::Gemini_3_Flash_Preview, FN2CGeminiPricing(0.5f, 3.0f));
+    GeminiModelPricing.Add(EN2CGeminiModel::Gemini_2_5_Pro, FN2CGeminiPricing(0.0f, 0.0f));
     GeminiModelPricing.Add(EN2CGeminiModel::Gemini_2_5_Flash, FN2CGeminiPricing(0.0f, 0.0f));
-    GeminiModelPricing.Add(EN2CGeminiModel::Gemini_Flash_2_0, FN2CGeminiPricing(1.0f, 0.4f));
-    GeminiModelPricing.Add(EN2CGeminiModel::Gemini_Flash_Lite_2_0, FN2CGeminiPricing(0.075f, 0.3f));
-    GeminiModelPricing.Add(EN2CGeminiModel::Gemini_1_5_Flash, FN2CGeminiPricing(0.075f, 0.3f));
-    GeminiModelPricing.Add(EN2CGeminiModel::Gemini_1_5_Pro, FN2CGeminiPricing(1.25f, 5.0f));
-    GeminiModelPricing.Add(EN2CGeminiModel::Gemini_2_0_ProExp_02_05, FN2CGeminiPricing(0.0f, 0.0f));
-    GeminiModelPricing.Add(EN2CGeminiModel::Gemini_2_0_FlashThinkingExp, FN2CGeminiPricing(0.0f, 0.0f));
+    GeminiModelPricing.Add(EN2CGeminiModel::Gemini_Flash_2_0, FN2CGeminiPricing(0.0f, 0.0f));
+    GeminiModelPricing.Add(EN2CGeminiModel::Gemini_Flash_Lite_2_0, FN2CGeminiPricing(0.0f, 0.0f));
     
     DeepSeekModelPricing.Add(EN2CDeepSeekModel::DeepSeek_R1, FN2CDeepSeekPricing(0.55f, 2.19f));
     DeepSeekModelPricing.Add(EN2CDeepSeekModel::DeepSeek_V3, FN2CDeepSeekPricing(0.14f, 0.28f));

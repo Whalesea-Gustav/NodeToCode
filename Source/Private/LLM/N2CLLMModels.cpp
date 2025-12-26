@@ -17,14 +17,12 @@ const TMap<EN2COpenAIModel, FN2COpenAIPricing> FN2CLLMModelUtils::OpenAIPricing 
 };
 
 const TMap<EN2CGeminiModel, FN2CGeminiPricing> FN2CLLMModelUtils::GeminiPricing = {
+    {EN2CGeminiModel::Gemini_3_Pro_Preview, FN2CGeminiPricing(2.0f, 12.0f)},
+    {EN2CGeminiModel::Gemini_3_Flash_Preview, FN2CGeminiPricing(0.5f, 3.0f)},
     {EN2CGeminiModel::Gemini_2_5_Flash, FN2CGeminiPricing(0.0f, 0.0f)},
-    {EN2CGeminiModel::Gemini_2_5_Pro, FN2CGeminiPricing(1.25f, 10.0f)},
+    {EN2CGeminiModel::Gemini_2_5_Pro, FN2CGeminiPricing(0.0f, 0.0f)},
     {EN2CGeminiModel::Gemini_Flash_2_0, FN2CGeminiPricing(0.0f, 0.0f)},
     {EN2CGeminiModel::Gemini_Flash_Lite_2_0, FN2CGeminiPricing(0.0f, 0.0f)},
-    {EN2CGeminiModel::Gemini_1_5_Flash, FN2CGeminiPricing(0.0f, 0.0f)},
-    {EN2CGeminiModel::Gemini_1_5_Pro, FN2CGeminiPricing(0.0f, 0.0f)},
-    {EN2CGeminiModel::Gemini_2_0_ProExp_02_05, FN2CGeminiPricing(0.0f, 0.0f)},
-    {EN2CGeminiModel::Gemini_2_0_FlashThinkingExp, FN2CGeminiPricing(0.0f, 0.0f)},
 };
 
 const TMap<EN2CAnthropicModel, FN2CAnthropicPricing> FN2CLLMModelUtils::AnthropicPricing = {
@@ -90,24 +88,20 @@ FString FN2CLLMModelUtils::GetGeminiModelValue(EN2CGeminiModel Model)
 {
     switch (Model)
     {
+    case EN2CGeminiModel::Gemini_3_Pro_Preview:
+        return TEXT("gemini-3-pro-preview");
+    case EN2CGeminiModel::Gemini_3_Flash_Preview:
+        return TEXT("gemini-3-flash-preview");
     case EN2CGeminiModel::Gemini_2_5_Flash:
-        return TEXT("gemini-2.5-flash-preview-05-20");
+        return TEXT("gemini-2.5-flash");
     case EN2CGeminiModel::Gemini_2_5_Pro:
-        return TEXT("gemini-2.5-pro-preview-05-06");
+        return TEXT("gemini-2.5-pro");
     case EN2CGeminiModel::Gemini_Flash_2_0:
         return TEXT("gemini-2.0-flash");
     case EN2CGeminiModel::Gemini_Flash_Lite_2_0:
-        return TEXT("gemini-2.0-flash-lite-preview-02-05");
-    case EN2CGeminiModel::Gemini_1_5_Flash:
-        return TEXT("gemini-1.5-flash");
-    case EN2CGeminiModel::Gemini_1_5_Pro:
-        return TEXT("gemini-1.5-pro");
-    case EN2CGeminiModel::Gemini_2_0_ProExp_02_05:
-        return TEXT("gemini-2.0-pro-exp-02-05");
-    case EN2CGeminiModel::Gemini_2_0_FlashThinkingExp:
-        return TEXT("gemini-2.0-flash-thinking-exp-01-21");
+        return TEXT("gemini-2.0-flash-lite");
     default:
-        return TEXT("gemini-2.5-flash-preview-05-20");
+        return TEXT("gemini-2.5-pro");
     }
 }
 
