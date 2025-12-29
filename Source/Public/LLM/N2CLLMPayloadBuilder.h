@@ -43,7 +43,8 @@ public:
     void ConfigureForDeepSeek();
     void ConfigureForOllama(const struct FN2COllamaConfig& OllamaConfig);
     void ConfigureForLMStudio();
-    
+    void ConfigureForHunYuan();
+
     /** Generate final payload */
     FString Build();
     

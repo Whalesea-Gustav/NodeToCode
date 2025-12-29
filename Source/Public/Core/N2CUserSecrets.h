@@ -45,6 +45,10 @@ public:
     UPROPERTY(EditAnywhere, Category = "Node to Code | API Keys")
     FString DeepSeek_API_Key;
     
+    /** DeepSeek API Key */
+    UPROPERTY(EditAnywhere, Category = "Node to Code | API Keys")
+    FString HunYuan_API_Key;
+    
 private:
     /** Ensure the secrets directory exists */
     static void EnsureSecretsDirectoryExists();

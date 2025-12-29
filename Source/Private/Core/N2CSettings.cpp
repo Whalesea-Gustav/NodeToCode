@@ -80,6 +80,8 @@ FString UN2CSettings::GetActiveApiKey() const
             return UserSecrets->Gemini_API_Key;
         case EN2CLLMProvider::DeepSeek:
             return UserSecrets->DeepSeek_API_Key;
+        case EN2CLLMProvider::HunYuan:
+            return UserSecrets->HunYuan_API_Key;
         case EN2CLLMProvider::LMStudio:
             return "lm-studio"; // LM Studio just requires a dummy API key for its OpenAI endpoint
         default:

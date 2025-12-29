@@ -82,3 +82,23 @@ struct FN2CDeepSeekPricing
     FN2CDeepSeekPricing(float InInput, float InOutput) 
         : InputCost(InInput), OutputCost(InOutput) {}
 };
+
+
+/** Pricing information for DeepSeek models */
+USTRUCT(BlueprintType)
+struct FN2CHunYuanPricing
+{
+    GENERATED_BODY()
+
+    // Cost per 1M tokens
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Node to Code | LLM Pricing")
+    float InputCost = 0.0f;
+
+    // Cost per 1M tokens
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Node to Code | LLM Pricing")
+    float OutputCost = 0.0f;
+
+    FN2CHunYuanPricing() {}
+    FN2CHunYuanPricing(float InInput, float InOutput) 
+        : InputCost(InInput), OutputCost(InOutput) {}
+};

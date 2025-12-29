@@ -38,6 +38,13 @@ const TMap<EN2CDeepSeekModel, FN2CDeepSeekPricing> FN2CLLMModelUtils::DeepSeekPr
     {EN2CDeepSeekModel::DeepSeek_V3, FN2CDeepSeekPricing(0.07f, 0.27f)}
 };
 
+const TMap<EN2CHunYuanModel, FN2CHunYuanPricing> FN2CLLMModelUtils::HunYuanPricing = {
+    {EN2CHunYuanModel::HunYuan_T1, FN2CHunYuanPricing(0.0f, 0.0f)},
+    {EN2CHunYuanModel::HunYuan_TurboS, FN2CHunYuanPricing(0.0f, 0.0f)},
+    {EN2CHunYuanModel::HY_2_0_Instruct, FN2CHunYuanPricing(0.8f, 2.0f)},
+    {EN2CHunYuanModel::HY_2_0_Think, FN2CHunYuanPricing(1.0f, 4.0f)},
+};
+
 FString FN2CLLMModelUtils::GetOpenAIModelValue(EN2COpenAIModel Model)
 {
     switch (Model)
@@ -119,6 +126,21 @@ FString FN2CLLMModelUtils::GetDeepSeekModelValue(EN2CDeepSeekModel Model)
     }
 }
 
+FString FN2CLLMModelUtils::GetHunYuanModelValue(EN2CHunYuanModel Model)
+{
+    if (const UEnum* Enum = StaticEnum<EN2CHunYuanModel>())
+    {
+        // “Value” 对应 UMETA(DisplayName=..., Value="...") 中的 Key
+        const FString KeyValue = TEXT("Value");
+        auto Index = Enum->GetIndexByValue(static_cast<int64>(Model));
+        if (Enum->HasMetaData(*KeyValue, Index))
+        {
+            return Enum->GetMetaData(*KeyValue, Index);
+        }
+    }
+    return FString();
+}
+
 FN2COpenAIPricing FN2CLLMModelUtils::GetOpenAIPricing(EN2COpenAIModel Model)
 {
     if (const FN2COpenAIPricing* Found = OpenAIPricing.Find(Model))
@@ -153,4 +175,13 @@ FN2CGeminiPricing FN2CLLMModelUtils::GetGeminiPricing(EN2CGeminiModel Model)
         return *Found;
     }
     return FN2CGeminiPricing();
+}
+
+FN2CHunYuanPricing FN2CLLMModelUtils::GetHunYuanPricing(EN2CHunYuanModel Model)
+{
+    if (const FN2CHunYuanPricing* Found = HunYuanPricing.Find(Model))
+    {
+        return *Found;
+    }
+    return FN2CHunYuanPricing();
 }

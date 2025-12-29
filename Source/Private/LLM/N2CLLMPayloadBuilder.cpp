@@ -113,6 +113,10 @@ void UN2CLLMPayloadBuilder::SetMaxTokens(int32 Value)
             // LM Studio uses OpenAI-compatible format with max_tokens
             RootObject->SetNumberField(TEXT("max_tokens"), Value);
             break;
+        case EN2CLLMProvider::HunYuan:
+            // HunYuan uses max_tokens
+            RootObject->SetNumberField(TEXT("max_tokens"), Value);
+            break;
         default:
             // DeepSeek uses max_tokens
             RootObject->SetNumberField(TEXT("max_tokens"), Value);
@@ -152,6 +156,7 @@ void UN2CLLMPayloadBuilder::AddSystemMessage(const FString& Content)
             
         default:
             // OpenAI, DeepSeek, LMStudio, and Ollama use messages array with role=system
+            // HunYuan also use this
             TSharedPtr<FJsonObject> SystemMessageObject = MakeShared<FJsonObject>();
             SystemMessageObject->SetStringField(TEXT("role"), TEXT("system"));
             SystemMessageObject->SetStringField(TEXT("content"), Content);
@@ -213,6 +218,7 @@ void UN2CLLMPayloadBuilder::AddUserMessage(const FString& Content)
             
         default:
             // OpenAI, DeepSeek, LMStudio, and Ollama use messages array with role=user
+            // HunYuan also use this
             TSharedPtr<FJsonObject> UserMessageObject = MakeShared<FJsonObject>();
             UserMessageObject->SetStringField(TEXT("role"), TEXT("user"));
             UserMessageObject->SetStringField(TEXT("content"), Content);
@@ -312,7 +318,10 @@ void UN2CLLMPayloadBuilder::SetJsonResponseFormat(const TSharedPtr<FJsonObject>&
                 RootObject->SetObjectField(TEXT("response_format"), ResponseFormatObject);
             }
             break;
-            
+        case EN2CLLMProvider::HunYuan:
+            // HunYuan doesn't have a specific JSON schema format yet
+            // but we can set the format to json
+            break;
         case EN2CLLMProvider::Anthropic:
             // Anthropic doesn't have a specific JSON schema format yet
             // but we can set the format to json
@@ -425,6 +434,10 @@ void UN2CLLMPayloadBuilder::ConfigureForLMStudio()
     
     // LM Studio uses OpenAI-compatible format with stream=false
     RootObject->SetBoolField(TEXT("stream"), false);
+}
+
+void UN2CLLMPayloadBuilder::ConfigureForHunYuan()
+{
 }
 
 FString UN2CLLMPayloadBuilder::Build()

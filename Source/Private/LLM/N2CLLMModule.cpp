@@ -12,6 +12,7 @@
 #include "LLM/Providers/N2CAnthropicService.h"
 #include "LLM/Providers/N2CDeepSeekService.h"
 #include "LLM/Providers/N2CGeminiService.h"
+#include "LLM/Providers/N2CHunYuanService.h"
 #include "LLM/Providers/N2CLMStudioService.h"
 #include "LLM/Providers/N2COpenAIService.h"
 #include "LLM/Providers/N2COllamaService.h"
@@ -500,6 +501,7 @@ void UN2CLLMModule::InitializeProviderRegistry()
     Registry->RegisterProvider(EN2CLLMProvider::DeepSeek, UN2CDeepSeekService::StaticClass());
     Registry->RegisterProvider(EN2CLLMProvider::Ollama, UN2COllamaService::StaticClass());
     Registry->RegisterProvider(EN2CLLMProvider::LMStudio, UN2CLMStudioService::StaticClass());
+    Registry->RegisterProvider(EN2CLLMProvider::HunYuan, UN2CHunYuanService::StaticClass());
     
     FN2CLogger::Get().Log(TEXT("Provider registry initialized"), EN2CLogSeverity::Info, TEXT("LLMModule"));
 }
